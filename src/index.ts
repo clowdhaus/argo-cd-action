@@ -1,16 +1,25 @@
 import * as core from '@actions/core';
-import {wait} from './wait';
+import stringArgv from 'string-argv';
+
+import ArgoCD from './argo-cd';
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds');
-    core.debug(`Waiting ${ms} milliseconds ...`); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
+    const command = stringArgv(core.getInput('command', {required: false}).trim());
+    core.debug(`[index] command: ${command}`);
+    const options = stringArgv(core.getInput('options', {required: false}).trim());
+    core.debug(`[index] options: ${options}`);
+    const version = core.getInput('version', {required: false}).trim();
+    core.debug(`[index] version: ${version}`);
 
-    core.debug(new Date().toTimeString());
-    await wait(parseInt(ms, 10));
-    core.debug(new Date().toTimeString());
+    // Get executable
+    const argocd = await ArgoCD.getOrDownload(version);
 
-    core.setOutput('time', new Date().toTimeString());
+    const args = [...command, ...options];
+    if (args) {
+      const result = await argocd.callStdout(args);
+      core.setOutput('output', result);
+    }
   } catch (error) {
     core.setFailed(error.message);
   }

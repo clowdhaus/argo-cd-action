@@ -6,14 +6,16 @@
 </h1>
 <p align="center">
   <img src="https://badgen.net/badge/TypeScript/strict%20%F0%9F%92%AA/blue" alt="Strict TypeScript">
-  <img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="Commitizen friendly">
+  <a href="http://commitizen.github.io/cz-cli/" alt="commitizen cli">
+    <img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="Commitizen friendly">
+  </a>
   <a href="https://snyk.io/test/github/clowdhaus/argo-cd-action">
     <img src="https://snyk.io/test/github/clowdhaus/argo-cd-action/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/clowdhaus/argo-cd-action">
   </a>
 </p>
 <p align="center">
-  <a href="https://github.com/clowdhaus/argo-cd-action/actions?query=workflow%3Atest">
-    <img src="https://github.com/clowdhaus/argo-cd-action/workflows/test/badge.svg?branch=main" alt="test">
+  <a href="https://github.com/clowdhaus/argo-cd-action/actions?query=workflow%3Aintegration">
+    <img src="https://github.com/clowdhaus/argo-cd-action/workflows/integration/badge.svg" alt="integration test">
   </a>
 </p>
 
@@ -21,8 +23,34 @@ GitHub action for executing Argo CD 🦑
 
 ## Usage
 
+See the [ArgoCD CLI documenation](https://argoproj.github.io/argo-cd/user-guide/commands/argocd/) for the list of available commands and options.
+
 ```yml
-TODO
+- uses: clowdhaus/argo-cd-action/@main
+  with:
+    version: 1.8.4
+    command: version
+    options: --client
+```
+
+### With GitHub API authentication
+
+If you are running a lot of workflows/jobs quite frequently, you may run into GitHub's API rate limit due to pulling the CLI from the ArgoCD repository. To get around this limitation, add the `GITHUB_TOKEN` as shown below (or see [here](https://github.com/octokit/auth-action.js#createactionauth) for more examples) to utilize a higher rate limit when authenticated.
+
+```yml
+- uses: clowdhaus/argo-cd-action/@main
+  env:
+    # Only required for first step in job where API is called
+    # All subsequent setps in a job will not re-download the CLI
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  with:
+    command: version
+    options: --client
+- uses: clowdhaus/argo-cd-action/@main
+  # CLI has already been downloaded in prior step, no call to GitHub API
+  with:
+    command: version
+    options: --client
 ```
 
 ## Getting Started

@@ -1,9 +1,26 @@
 name: Argo CD Action
 author: Clowd Haus, LLC
-description: GitHub action for executing Argo CD
+description: GitHub action for installing/executing Argo CD cli
 branding:
   icon: anchor
   color: gray-dark
+
+inputs:
+  command:
+    description: >
+      Command passed to the cli
+      Reference - https://argoproj.github.io/argo-cd/user-guide/commands/argocd/
+    required: false
+  options:
+    description: >
+      Command options passed to the cli
+      Reference - https://argoproj.github.io/argo-cd/user-guide/commands/argocd/
+    required: false
+  version:
+    description: >
+      Version of Argo CD to install - https://github.com/argoproj/argo-cd/releases
+    required: false
+    default: 1.8.4
 
 runs:
   using: node12
