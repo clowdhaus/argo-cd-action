@@ -28,7 +28,7 @@ See the [ArgoCD CLI documenation](https://argoproj.github.io/argo-cd/user-guide/
 ```yml
 - uses: clowdhaus/argo-cd-action/@main
   with:
-    version: 1.8.4
+    version: 2.0.0
     command: version
     options: --client
 ```
