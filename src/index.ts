@@ -12,8 +12,6 @@ async function run(): Promise<void> {
     const version = core.getInput('version', {required: false}).trim();
     core.debug(`[index] version: ${version}`);
 
-
-
     // Get executable
     const argocd = await ArgoCD.getOrDownload(version);
 
