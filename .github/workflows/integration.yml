@@ -26,7 +26,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+        os: [macos-latest, ubuntu-latest]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -37,10 +37,6 @@ jobs:
           command: version
           options: --client
 
-      - name: Set Windows binary name
-        if: ${{ matrix.os == 'windows-latest' }}
-        run: echo "ARGOCD_BINARY_NAME=argocd.exe" >> $GITHUB_ENV
-
       - name: Check install - should not re-download
         uses: ./
 
@@ -49,7 +45,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+        os: [macos-latest, ubuntu-latest]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -63,10 +59,6 @@ jobs:
           command: version
           options: --client
 
-      - name: Set Windows binary name
-        if: ${{ matrix.os == 'windows-latest' }}
-        run: echo "ARGOCD_BINARY_NAME=argocd.exe" >> $GITHUB_ENV
-
       - name: Check install - should not re-download
         uses: ./
 
@@ -75,7 +67,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+        os: [macos-latest, ubuntu-latest]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
