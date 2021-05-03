@@ -62,6 +62,10 @@ jobs:
       - name: Check install - should not re-download
         uses: ./
 
+      - name: This should work too
+        run: |
+          argocd version --client
+
   set-version:
     name: Set version
     runs-on: ${{ matrix.os }}
