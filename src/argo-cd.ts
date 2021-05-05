@@ -70,12 +70,9 @@ export default class ArgoCD {
 
     const cachedPath = await tc.cacheFile(assetPath, EXE_NAME, EXE_NAME, version);
     core.addPath(cachedPath);
+    await fs.chmod(cachedPath, 0o755);
 
-    if (PLATFORM !== 'win32') {
-      await fs.chmod(assetPath, 0o755);
-    }
-
-    return new ArgoCD(assetPath);
+    return new ArgoCD(cachedPath);
   }
 
   async version(): Promise<string> {
