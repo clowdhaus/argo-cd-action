@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/clowdhaus/argo-cd-action/compare/v1.1.0...v1.2.0) (2021-05-05)
+
+
+### Bug Fixes
+
+* **deps:** patch reported vulnerability in `merge` sub-dependency ([72e75b3](https://github.com/clowdhaus/argo-cd-action/commit/72e75b3e54fad2cf01ce87257d9df1b1f2e50cb7))
+
+
+### Features
+
+* modify CLI binary download process to cache and add to `$PATH` for later step invocations ([#7](https://github.com/clowdhaus/argo-cd-action/issues/7)) ([af771f8](https://github.com/clowdhaus/argo-cd-action/commit/af771f8061df48a77e8569dd692f053b72610f9e))
+
 # [1.1.0](https://github.com/clowdhaus/argo-cd-action/compare/v1.0.0...v1.1.0) (2021-05-01)
 
 
