@@ -33,8 +33,12 @@ export default class ArgoCD {
   }
 
   static async getOrDownload(version: string): Promise<ArgoCD> {
-    if (existsSync(ASSET_DEST)) {
-      return new ArgoCD(ASSET_DEST);
+    const argoBinaryDirectory = tc.find('argocd', version);
+    if (existsSync(argoBinaryDirectory)) {
+      core.debug(`Found "argocd" executable at: ${argoBinaryDirectory}`);
+      const argoBinary = path.join(argoBinaryDirectory, EXE_NAME);
+      core.addPath(argoBinary);
+      return new ArgoCD('argocd');
     } else {
       core.debug('Unable to find "argocd" executable, downloading it now');
       return await ArgoCD.download(version);
@@ -68,11 +72,13 @@ export default class ArgoCD {
     core.debug(`[debug()] getExecutableUrl: ${exeutableUrl}`);
     const assetPath = await tc.downloadTool(exeutableUrl, ASSET_DEST);
 
-    const cachedPath = await tc.cacheFile(assetPath, EXE_NAME, EXE_NAME, version);
+    const cachedPath = await tc.cacheFile(assetPath, EXE_NAME, 'argocd', version);
     core.addPath(cachedPath);
-    await fs.chmod(cachedPath, 0o755);
 
-    return new ArgoCD(cachedPath);
+    const cachedBinaryPath = path.join(cachedPath, EXE_NAME);
+    await fs.chmod(cachedBinaryPath, 0o755);
+
+    return new ArgoCD('argocd');
   }
 
   async version(): Promise<string> {
