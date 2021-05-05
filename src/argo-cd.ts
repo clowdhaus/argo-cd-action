@@ -67,7 +67,9 @@ export default class ArgoCD {
     const exeutableUrl = await ArgoCD.getExecutableUrl(version);
     core.debug(`[debug()] getExecutableUrl: ${exeutableUrl}`);
     const assetPath = await tc.downloadTool(exeutableUrl, ASSET_DEST);
-    core.addPath(assetPath);
+
+    const cachedPath = await tc.cacheFile(assetPath, EXE_NAME, EXE_NAME, version);
+    core.addPath(cachedPath);
 
     if (PLATFORM !== 'win32') {
       await fs.chmod(assetPath, 0o755);
