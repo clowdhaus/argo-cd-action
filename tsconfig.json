@@ -12,7 +12,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "preserveConstEnums": true
+    "preserveConstEnums": true,
+    "suppressImplicitAnyIndexErrors": true
   },
   "include": ["src/*.ts"],
   "exclude": ["node_modules", "tests"]
