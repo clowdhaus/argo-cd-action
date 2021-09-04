@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/clowdhaus/argo-cd-action/compare/v1.2.3...v1.3.0) (2021-09-04)
+
+
+### Bug Fixes
+
+* **deps:** update dependencies to latest and re-complile to patch reported vulnerabilities ([8bcc233](https://github.com/clowdhaus/argo-cd-action/commit/8bcc2339ce6ed62aa79a190382ec0fcd1e5cb9ab))
+
+
+### Features
+
+* bump default ArgoCD CLI version to `v2.1.2` ([3bfd695](https://github.com/clowdhaus/argo-cd-action/commit/3bfd69507f4c5273c45edd4f2d1d021fe0138437))
+
 ## [1.2.3](https://github.com/clowdhaus/argo-cd-action/compare/v1.2.2...v1.2.3) (2021-08-05)
 
 
