@@ -1,1 +1,4 @@
-dist/** linguist-vendored
+.eslintrc.js linguist-vendored
+.prettierrc.js linguist-vendored
+
+dist/** linguist-generated
