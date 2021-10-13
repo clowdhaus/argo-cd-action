@@ -1,3 +1,16 @@
+# [1.4.0](https://github.com/clowdhaus/argo-cd-action/compare/v1.3.0...v1.4.0) (2021-10-13)
+
+
+### Bug Fixes
+
+* **deps:** set min resolution version to patch vulnerability in `ansi-regex` sub-dependency ([4dcd5f9](https://github.com/clowdhaus/argo-cd-action/commit/4dcd5f9f887f50ca5746d01d9bbe1b35f651d418))
+* **deps:** update dependencies to latest and re-complile to patch reported vulnerabilities ([1c21c25](https://github.com/clowdhaus/argo-cd-action/commit/1c21c256e9f1e6065a48b42d6617108e74557dd8))
+
+
+### Features
+
+* bump default ArgoCD CLI version to `v2.1.3` ([4b692e5](https://github.com/clowdhaus/argo-cd-action/commit/4b692e5bce2114a35b6573ef42b28383c5dfeda0))
+
 # [1.3.0](https://github.com/clowdhaus/argo-cd-action/compare/v1.2.3...v1.3.0) (2021-09-04)
 
 
