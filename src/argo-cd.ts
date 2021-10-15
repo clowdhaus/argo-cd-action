@@ -1,12 +1,13 @@
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import * as tc from '@actions/tool-cache';
+import {createActionAuth} from '@octokit/auth-action';
+import {Octokit} from '@octokit/rest';
+
+import {existsSync, promises as fs} from 'fs';
 import * as os from 'os';
 import * as path from 'path';
 import * as process from 'process';
-import {createActionAuth} from '@octokit/auth-action';
-import {Octokit} from '@octokit/rest';
-import {existsSync, promises as fs} from 'fs';
 
 const PLATFORM = process.platform;
 const EXE_NAME = PLATFORM === 'win32' ? 'argocd.exe' : 'argocd';

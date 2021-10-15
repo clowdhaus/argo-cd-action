@@ -1,67 +1,31 @@
 {
   "name": "argo-cd-action",
   "version": "0.0.0",
+  "private": true,
   "description": "GitHub action for executing Argo CD",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/clowdhaus/argo-cd-action.git"
-  },
   "keywords": [
     "github",
     "actions",
     "argo-cd",
     "git-ops"
   ],
-  "author": "Clowd Haus, LLC",
-  "license": "Apache-2.0",
+  "homepage": "https://github.com/clowdhaus/argo-cd-action#readme",
   "bugs": {
     "url": "https://github.com/clowdhaus/argo-cd-action/issues"
   },
-  "homepage": "https://github.com/clowdhaus/argo-cd-action#readme",
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clowdhaus/argo-cd-action.git"
+  },
+  "license": "Apache-2.0",
+  "author": "Clowd Haus, LLC",
   "main": "src/index.ts",
   "scripts": {
     "all": "yarn format && yarn lint && yarn compile",
     "compile": "ncc build -m",
-    "format": "prettier --write **/*ts",
+    "format": "prettier --write src/*ts .eslintrc.js",
     "lint": "eslint '**/*.ts' --quiet --fix",
     "release": "semantic-release"
-  },
-  "dependencies": {
-    "@actions/core": "^1.6.0",
-    "@actions/exec": "^1.1.0",
-    "@actions/tool-cache": "^1.7.1",
-    "@octokit/auth-action": "^1.3.3",
-    "@octokit/rest": "^18.12.0",
-    "ansi-regex": "^6.0.1",
-    "string-argv": "^0.3.1"
-  },
-  "devDependencies": {
-    "@semantic-release/changelog": "^6.0.0",
-    "@semantic-release/git": "^10.0.0",
-    "@types/node": "^16.10.5",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
-    "@vercel/ncc": "^0.31.1",
-    "commitizen": "^4.2.4",
-    "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.0.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "lint-staged": "^11.2.3",
-    "prettier": "^2.4.1",
-    "prettier-plugin-package": "^1.3.0",
-    "semantic-release": "^18.0.0",
-    "typescript": "^4.4.4"
-  },
-  "resolutions": {
-    "ansi-regex": "^5.0.1",
-    "merge": ">=2.1.1"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   },
   "lint-staged": {
     "*.ts": [
@@ -74,6 +38,42 @@
     "*package.json": [
       "prettier --write --plugin=prettier-plugin-package"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "resolutions": {
+    "ansi-regex": "^5.0.1",
+    "merge": ">=2.1.1"
+  },
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/exec": "^1.1.0",
+    "@actions/tool-cache": "^1.7.1",
+    "@octokit/auth-action": "^1.3.3",
+    "@octokit/rest": "^18.12.0",
+    "string-argv": "^0.3.1"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.0",
+    "@semantic-release/git": "^10.0.0",
+    "@types/node": "^16.11.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "@vercel/ncc": "^0.31.1",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "lint-staged": "^11.2.3",
+    "prettier": "^2.4.1",
+    "prettier-plugin-package": "^1.3.0",
+    "semantic-release": "^18.0.0",
+    "typescript": "^4.4.4"
   },
   "release": {
     "branches": [

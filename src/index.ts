@@ -1,7 +1,7 @@
+import ArgoCD from './argo-cd';
+
 import * as core from '@actions/core';
 import stringArgv from 'string-argv';
-
-import ArgoCD from './argo-cd';
 
 async function run(): Promise<void> {
   try {
