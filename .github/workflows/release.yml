@@ -1,0 +1,35 @@
+name: release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/release.yml'
+      - 'dist/**'
+      - 'src/**'
+      - 'action.yml'
+      - 'yarn.lock'
+
+jobs:
+  release:
+    name: release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
+        run: |
+          yarn
+          yarn release
