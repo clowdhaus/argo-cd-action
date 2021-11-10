@@ -23,7 +23,7 @@ GitHub action for executing Argo CD 🦑
 
 ## Usage
 
-See the [ArgoCD CLI documenation](https://argoproj.github.io/argo-cd/user-guide/commands/argocd/) for the list of available commands and options.
+See the [ArgoCD CLI documentation](https://argoproj.github.io/argo-cd/user-guide/commands/argocd/) for the list of available commands and options.
 
 ```yml
 - uses: clowdhaus/argo-cd-action/@main
