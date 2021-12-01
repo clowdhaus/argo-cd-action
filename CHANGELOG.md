@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/clowdhaus/argo-cd-action/compare/v1.4.2...v1.5.0) (2021-12-01)
+
+
+### Features
+
+* update to use node16 runner and bump ArgoCD default version 2.1.7 ([9231f64](https://github.com/clowdhaus/argo-cd-action/commit/9231f64f5d6f09abea249712323a91afd760c5dd))
+
 ## [1.4.2](https://github.com/clowdhaus/argo-cd-action/compare/v1.4.1...v1.4.2) (2021-11-20)
 
 
