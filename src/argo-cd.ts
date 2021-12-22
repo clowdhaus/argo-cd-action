@@ -36,10 +36,8 @@ export default class ArgoCD {
   static async getOrDownload(version: string): Promise<ArgoCD> {
     const argoBinaryDirectory = tc.find('argocd', version);
     if (existsSync(argoBinaryDirectory)) {
-      core.debug(`Found "argocd" executable at: ${argoBinaryDirectory}`);
       core.addPath(argoBinaryDirectory);
-      // const argoBinary = path.join(argoBinaryDirectory, EXE_NAME);
-      // core.addPath(argoBinary);
+      core.debug(`Found "argocd" executable at: ${argoBinaryDirectory}`);
       return new ArgoCD('argocd');
     } else {
       core.debug('Unable to find "argocd" executable, downloading it now');
