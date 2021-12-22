@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/clowdhaus/argo-cd-action/compare/v1.5.0...v1.6.0) (2021-12-22)
+
+
+### Features
+
+* update default version of ArgoCD to 2.2.1 from 2.1.7, correct which directory is added to the PATH for re-using the cached ArgoCD binary; closes ([#11](https://github.com/clowdhaus/argo-cd-action/issues/11)) ([22a1e74](https://github.com/clowdhaus/argo-cd-action/commit/22a1e74b6e2d1418c232b6a310a4c8655d659cd1))
+
 # [1.5.0](https://github.com/clowdhaus/argo-cd-action/compare/v1.4.2...v1.5.0) (2021-12-01)
 
 
