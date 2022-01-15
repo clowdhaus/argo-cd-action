@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/clowdhaus/argo-cd-action/compare/v1.7.0...v1.7.1) (2022-01-15)
+
+
+### Bug Fixes
+
+* update dependencies to latest to patch reported vulnerability ([16f34ed](https://github.com/clowdhaus/argo-cd-action/commit/16f34ed6f8a2e1dca1676cb03003b561abcfc61c))
+
 # [1.7.0](https://github.com/clowdhaus/argo-cd-action/compare/v1.6.0...v1.7.0) (2022-01-13)
 
 
