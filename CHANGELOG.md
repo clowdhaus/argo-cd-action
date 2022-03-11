@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/clowdhaus/argo-cd-action/compare/v1.10.0...v1.11.0) (2022-03-11)
+
+
+### Features
+
+* bump argo default version to 2.3.1 and update dependencies to latest ([026f28a](https://github.com/clowdhaus/argo-cd-action/commit/026f28aaa927108277b43ce4cc80e58c95193e06))
+
 # [1.10.0](https://github.com/clowdhaus/argo-cd-action/compare/v1.9.0...v1.10.0) (2022-02-05)
 
 
