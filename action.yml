@@ -20,7 +20,7 @@ inputs:
     description: >
       Version of Argo CD to install - https://github.com/argoproj/argo-cd/releases
     required: false
-    default: 2.3.1
+    default: 2.3.3
 
 runs:
   using: node16
