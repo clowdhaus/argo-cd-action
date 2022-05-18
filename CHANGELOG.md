@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/clowdhaus/argo-cd-action/compare/v1.12.0...v1.12.1) (2022-05-18)
+
+
+### Bug Fixes
+
+* Update dependencies to latest and re-compile action artifact ([a875eb0](https://github.com/clowdhaus/argo-cd-action/commit/a875eb0197a51dcbaabfe45c05e089c26ba0b9dd))
+
 # [1.12.0](https://github.com/clowdhaus/argo-cd-action/compare/v1.11.0...v1.12.0) (2022-03-30)
 
 
