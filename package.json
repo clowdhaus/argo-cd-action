@@ -72,11 +72,11 @@
     ]
   },
   "dependencies": {
-    "@actions/core": "^1.9.0",
+    "@actions/core": "^1.9.1",
     "@actions/exec": "^1.1.1",
     "@actions/tool-cache": "^2.0.1",
-    "@octokit/auth-action": "^2.0.0",
-    "@octokit/rest": "^19.0.3",
+    "@octokit/auth-action": "^2.0.1",
+    "@octokit/rest": "^19.0.4",
     "string-argv": "^0.3.1"
   },
   "devDependencies": {
