@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/clowdhaus/argo-cd-action/compare/v1.13.0...v1.14.0) (2022-09-03)
+
+
+### Features
+
+* Update dependencies to patch reported vulnerabilities and update ArgoCD default version ([e077450](https://github.com/clowdhaus/argo-cd-action/commit/e07745084b869e312a56ee3ea164405d5c3762c5))
+
 # [1.13.0](https://github.com/clowdhaus/argo-cd-action/compare/v1.12.1...v1.13.0) (2022-07-28)
 
 
