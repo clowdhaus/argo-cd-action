@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/clowdhaus/argo-cd-action/compare/v1.14.0...v1.15.0) (2022-11-09)
+
+
+### Features
+
+* Update dependencies to latest to patch deprecated output ([#18](https://github.com/clowdhaus/argo-cd-action/issues/18)) ([ad80b41](https://github.com/clowdhaus/argo-cd-action/commit/ad80b41e0afdbfac6d225fa204cfed4fa030c3c3))
+
 # [1.14.0](https://github.com/clowdhaus/argo-cd-action/compare/v1.13.0...v1.14.0) (2022-09-03)
 
 
