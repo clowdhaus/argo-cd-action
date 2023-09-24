@@ -1,3 +1,13 @@
+# [2.0.0](https://github.com/clowdhaus/argo-cd-action/compare/v1.17.0...v2.0.0) (2023-09-24)
+
+
+* feat!: Update action runtime to `nodejs20`, update default ArgoCD version to `2.8.4` (#24) ([e7b930c](https://github.com/clowdhaus/argo-cd-action/commit/e7b930cb6b0d2fdd4b4886c55197051275fcc11c)), closes [#24](https://github.com/clowdhaus/argo-cd-action/issues/24)
+
+
+### BREAKING CHANGES
+
+* Update action runtime to `nodejs20`, update default ArgoCD version to `2.8.4`
+
 # [1.17.0](https://github.com/clowdhaus/argo-cd-action/compare/v1.16.0...v1.17.0) (2023-04-24)
 
 
