@@ -58,6 +58,7 @@ export default class ArgoCD {
         tag: `v${version}`,
       });
 
+      /* eslint-disable  @typescript-eslint/no-explicit-any */
       const asset = releases.data.assets.filter((rel: any) => rel.name === executable)[0];
       return asset.browser_download_url;
     } catch (err) {
