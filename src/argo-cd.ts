@@ -44,7 +44,7 @@ export default class ArgoCD {
     // If hitting GitHub API rate limit, add `GITHUB_TOKEN` to raise limit
     const octoConfig = process.env.GITHUB_TOKEN ? {authStrategy: createActionAuth} : {};
     const octokit = new Octokit(octoConfig);
-    let executable = `argocd-${PLATFORM}-${CPUArchitectures[CPU_ARCH]}`;
+    let executable = `argocd-${PLATFORM}-${CPUArchitectures[CPU_ARCH as keyof typeof CPUArchitectures]}`;
 
     if (PLATFORM === 'win32') {
       executable = 'argocd-windows-amd64.exe';

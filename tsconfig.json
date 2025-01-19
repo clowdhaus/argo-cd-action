@@ -13,7 +13,6 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "preserveConstEnums": true,
-    "suppressImplicitAnyIndexErrors": true,
     "ignoreDeprecations": "5.0",
   },
   "include": ["src/*.ts"],
