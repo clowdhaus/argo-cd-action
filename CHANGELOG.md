@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/clowdhaus/argo-cd-action/compare/v2.2.0...v2.2.1) (2025-01-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @actions/tool-cache to v2.0.2 ([#35](https://github.com/clowdhaus/argo-cd-action/issues/35)) ([8da00e7](https://github.com/clowdhaus/argo-cd-action/commit/8da00e7cc47bd10da6a3dc986ef47bd78a56e31b))
+
 # [2.2.0](https://github.com/clowdhaus/argo-cd-action/compare/v2.1.0...v2.2.0) (2024-05-23)
 
 
