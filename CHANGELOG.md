@@ -1,3 +1,10 @@
+## [2.2.2](https://github.com/clowdhaus/argo-cd-action/compare/v2.2.1...v2.2.2) (2025-01-20)
+
+
+### Bug Fixes
+
+* Update dependencies to latest, re-generate artifact ([43c1936](https://github.com/clowdhaus/argo-cd-action/commit/43c193649efc9e13bbc8b2c2bdd6910d78468335))
+
 ## [2.2.1](https://github.com/clowdhaus/argo-cd-action/compare/v2.2.0...v2.2.1) (2025-01-19)
 
 
