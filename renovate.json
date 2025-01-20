@@ -4,8 +4,10 @@
     "config:recommended"
   ],
   "schedule": ["* 6-12 * * 0"],
+  "allowedPostUpgradeCommands": ["^yarn all$"],
   "postUpgradeTasks": {
     "commands": ["yarn all"],
+    "fileFilters": ["package.json", "yarn.lock", "**/*.ts"],
     "executionMode": "update"
   }
 }
