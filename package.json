@@ -69,7 +69,7 @@
     "@actions/exec": "^1.1.1",
     "@actions/tool-cache": "^2.0.1",
     "@octokit/auth-action": "^5.1.1",
-    "@octokit/rest": "^20.1.1",
+    "@octokit/rest": "^21.0.0",
     "string-argv": "^0.3.2"
   },
   "devDependencies": {
