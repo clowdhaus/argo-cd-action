@@ -73,17 +73,17 @@
     "string-argv": "^0.3.2"
   },
   "devDependencies": {
-    "@eslint/js": "^9.18.0",
+    "@eslint/js": "^9.21.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@types/node": "^22.13.4",
+    "@types/node": "^22.13.5",
     "@vercel/ncc": "^0.38.3",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^9.20.1",
+    "eslint": "^9.21.0",
     "lint-staged": "^15.4.1",
     "semantic-release": "^24.2.3",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.24.1"
+    "typescript-eslint": "^8.25.0"
   }
 }
