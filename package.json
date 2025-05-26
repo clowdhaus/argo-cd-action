@@ -68,21 +68,21 @@
     "@actions/core": "^1.11.1",
     "@actions/exec": "^1.1.1",
     "@actions/tool-cache": "^2.0.2",
-    "@octokit/auth-action": "^5.1.2",
-    "@octokit/rest": "^21.1.1",
+    "@octokit/auth-action": "^6.0.1",
+    "@octokit/rest": "^22.0.0",
     "string-argv": "^0.3.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.27.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@types/node": "^22.15.19",
+    "@types/node": "^22.15.21",
     "@vercel/ncc": "^0.38.3",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^9.27.0",
     "lint-staged": "^16.0.0",
-    "semantic-release": "^24.2.4",
+    "semantic-release": "^24.2.5",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.32.1"
   }
