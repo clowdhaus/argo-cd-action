@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/clowdhaus/argo-cd-action/compare/v3.0.0...v3.1.0) (2025-09-11)
+
+
+### Features
+
+* Bump default ArgoCD version to `v3.1.5` ([#87](https://github.com/clowdhaus/argo-cd-action/issues/87)) ([567d18e](https://github.com/clowdhaus/argo-cd-action/commit/567d18e865f819c11474327b0911f026b9cb3235))
+
 # [2.3.0](https://github.com/clowdhaus/argo-cd-action/compare/v2.2.2...v2.3.0) (2025-01-20)
 
 
