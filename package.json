@@ -26,12 +26,6 @@
     "lint": "eslint . --quiet --fix",
     "release": "semantic-release"
   },
-  "lint-staged": {
-    "*.ts": [
-      "eslint --fix",
-      "git add"
-    ]
-  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
@@ -81,9 +75,11 @@
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^9.39.1",
-    "lint-staged": "^16.2.6",
     "semantic-release": "^25.0.2",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.47.0"
+  },
+  "resolutions": {
+    "tmp": ">=0.2.4"
   }
 }
