@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/clowdhaus/argo-cd-action/compare/v3.1.0...v3.2.0) (2025-11-24)
+
+
+### Features
+
+* Use NodeJS 24; NodeJS 20 is reaching end of support within GitHub ([#105](https://github.com/clowdhaus/argo-cd-action/issues/105)) ([dbcf7c4](https://github.com/clowdhaus/argo-cd-action/commit/dbcf7c4049cc288cdfadfe5b5f3eaa66c68c8ea2))
+
 # [3.1.0](https://github.com/clowdhaus/argo-cd-action/compare/v3.0.0...v3.1.0) (2025-09-11)
 
 
