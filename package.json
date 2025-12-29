@@ -77,7 +77,7 @@
     "eslint": "^9.39.2",
     "semantic-release": "^25.0.2",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.50.1"
+    "typescript-eslint": "^8.51.0"
   },
   "resolutions": {
     "tmp": ">=0.2.4"
