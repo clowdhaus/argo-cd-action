@@ -70,14 +70,14 @@
     "@eslint/js": "^10.0.1",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@types/node": "^25.2.2",
+    "@types/node": "^25.2.3",
     "@vercel/ncc": "^0.38.4",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^10.0.0",
     "semantic-release": "^25.0.3",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.55.0"
+    "typescript-eslint": "^8.56.0"
   },
   "resolutions": {
     "tmp": ">=0.2.4"
