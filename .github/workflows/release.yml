@@ -9,7 +9,7 @@ on:
       - 'dist/**'
       - 'src/**'
       - 'action.yml'
-      - 'yarn.lock'
+      - 'package-lock.json'
 
 jobs:
   release:
@@ -31,5 +31,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
         run: |
-          yarn
-          yarn release
+          npm ci
+          npm run release

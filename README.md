@@ -59,16 +59,14 @@ The following instructions will help you get setup for development and testing p
 
 ### Prerequisites
 
-#### [yarn](https://github.com/yarnpkg/yarn)
+#### [npm](https://www.npmjs.com/)
 
-`yarn` is used to handle dependencies and executing scripts on the codebase.
+`npm` is used to handle dependencies and executing scripts on the codebase.
 
-See [here](https://yarnpkg.com/en/docs/install#debian-stable) for instructions on installing yarn on your local machine.
-
-Once you have installed `yarn`, you can install the project dependencies by running the following command from within the project root directory:
+Install the project dependencies by running the following command from within the project root directory:
 
 ```bash
-  $ yarn
+  $ npm install
 ```
 
 ## Contributing
