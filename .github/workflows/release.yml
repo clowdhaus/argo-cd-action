@@ -14,8 +14,6 @@ on:
 
 permissions:
   contents: write
-  issues: write
-  pull-requests: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -32,14 +30,21 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Setup Node.js
-        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
+      - name: Determine next version
+        id: git-cliff
+        uses: orhun/git-cliff-action@c93ef52f3d0ddcdcc9bd5447d98d458a11cd4f72 # v4
         with:
-          node-version: 24
-
-      - name: Release
+          config: cliff.toml
+          args: --bump --unreleased
         env:
-          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
-        run: |
-          npm ci --ignore-scripts
-          npm run release
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create release
+        if: steps.git-cliff.outputs.version != ''
+        uses: softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b # v2
+        with:
+          tag_name: ${{ steps.git-cliff.outputs.version }}
+          body: ${{ steps.git-cliff.outputs.content }}
+          make_latest: "true"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -24,45 +24,7 @@
     "all": "npm run lint && npm run test && npm run compile",
     "test": "vitest run",
     "compile": "ncc build -m",
-    "lint": "eslint . --quiet --fix",
-    "release": "semantic-release"
-  },
-  "release": {
-    "branches": [
-      "main"
-    ],
-    "plugins": [
-      [
-        "@semantic-release/commit-analyzer",
-        {
-          "preset": "conventionalcommits"
-        }
-      ],
-      [
-        "@semantic-release/release-notes-generator",
-        {
-          "preset": "conventionalcommits"
-        }
-      ],
-      "@semantic-release/github",
-      [
-        "@semantic-release/changelog",
-        {
-          "changelogFile": "CHANGELOG.md"
-        }
-      ],
-      [
-        "@semantic-release/git",
-        {
-          "assets": [
-            "CHANGELOG.md",
-            "dist/index.js",
-            "package.json"
-          ],
-          "message": "chore(release): version ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-        }
-      ]
-    ]
+    "lint": "eslint . --quiet --fix"
   },
   "dependencies": {
     "@actions/core": "^3.0.0",
@@ -74,19 +36,11 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
     "@types/node": "^25.3.5",
     "@vercel/ncc": "^0.38.4",
-    "conventional-changelog-conventionalcommits": "^9.3.0",
     "eslint": "^10.0.2",
-    "semantic-release": "^25.0.3",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.56.1",
     "vitest": "^4.0.18"
-  },
-  "overrides": {
-    "minimatch": "^10.2.4",
-    "tar": "^7.5.10"
   }
 }
