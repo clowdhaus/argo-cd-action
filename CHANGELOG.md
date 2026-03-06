@@ -1,3 +1,9 @@
+## [4.1.0](https://github.com/clowdhaus/argo-cd-action/compare/v4.0.0...v4.1.0) (2026-03-06)
+
+### Features
+
+* security hardening and unit test coverage ([#127](https://github.com/clowdhaus/argo-cd-action/issues/127)) ([fcecee0](https://github.com/clowdhaus/argo-cd-action/commit/fcecee02b63cec9426040a6e142c4d5428e06b63))
+
 ## [4.0.0](https://github.com/clowdhaus/argo-cd-action/compare/v3.2.0...v4.0.0) (2026-03-06)
 
 ### ⚠ BREAKING CHANGES
