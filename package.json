@@ -23,7 +23,7 @@
   "scripts": {
     "all": "npm run lint && npm run test && npm run compile",
     "test": "vitest run",
-    "compile": "ncc build -m",
+    "compile": "esbuild src/index.ts --bundle --platform=node --target=node24 --minify --outfile=dist/index.js",
     "lint": "eslint . --quiet --fix"
   },
   "dependencies": {
@@ -37,7 +37,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/node": "^25.3.5",
-    "@vercel/ncc": "^0.38.4",
+    "esbuild": "^0.25.4",
     "eslint": "^10.0.2",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.56.1",
