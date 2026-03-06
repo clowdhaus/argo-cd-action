@@ -37,6 +37,9 @@ build/Release
 .env
 .env.test
 
+# Plan files
+docs/plans/
+
 # OS metadata
 .DS_Store
 Thumbs.db

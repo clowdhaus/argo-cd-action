@@ -9,18 +9,31 @@ inputs:
   command:
     description: >
       Command passed to the cli
-      Reference - https://argoproj.github.io/argo-cd/user-guide/commands/argocd/
+      Reference - https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd/
     required: false
   options:
     description: >
       Command options passed to the cli
-      Reference - https://argoproj.github.io/argo-cd/user-guide/commands/argocd/
+      Reference - https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd/
     required: false
   version:
     description: >
       Version of Argo CD to install - https://github.com/argoproj/argo-cd/releases
     required: false
     default: 3.3.2
+  download-url:
+    description: >
+      Custom URL to download the ArgoCD CLI binary from. When set, the binary is
+      downloaded directly from this URL instead of from GitHub releases. Useful for
+      downloading from a self-hosted ArgoCD server (e.g., https://argocd.example.com/download/argocd-linux-amd64).
+      Note: checksum verification is skipped when using a custom download URL.
+      The version input is still required for tool-cache keying.
+    required: false
+
+outputs:
+  output:
+    description: >
+      Output from the ArgoCD CLI command execution
 
 runs:
   using: node24

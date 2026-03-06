@@ -11,6 +11,15 @@ on:
       - 'action.yml'
       - 'package-lock.json'
 
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   release:
     name: release

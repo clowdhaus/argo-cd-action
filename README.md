@@ -5,53 +5,137 @@
   argo-cd-action
 </h1>
 <p align="center">
-  <img src="https://badgen.net/badge/TypeScript/strict%20%F0%9F%92%AA/blue" alt="Strict TypeScript">
-  <a href="http://commitizen.github.io/cz-cli/" alt="commitizen cli">
-    <img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="Commitizen friendly">
-  </a>
-  <a href="https://snyk.io/test/github/clowdhaus/argo-cd-action">
-    <img src="https://snyk.io/test/github/clowdhaus/argo-cd-action/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/clowdhaus/argo-cd-action">
-  </a>
-</p>
-<p align="center">
   <a href="https://github.com/clowdhaus/argo-cd-action/actions?query=workflow%3Aintegration">
     <img src="https://github.com/clowdhaus/argo-cd-action/workflows/integration/badge.svg" alt="integration test">
   </a>
 </p>
 
-GitHub action for executing Argo CD 🦑
+GitHub action for installing and executing the [Argo CD](https://argo-cd.readthedocs.io/) CLI.
 
 ## Usage
 
-See the [ArgoCD CLI documentation](https://argoproj.github.io/argo-cd/user-guide/commands/argocd/) for the list of available commands and options.
+See the [ArgoCD CLI documentation](https://argo-cd.readthedocs.io/en/stable/user-guide/commands/argocd/) for the full list of available commands and options.
+
+### Inputs
+
+| Name | Description | Required | Default |
+|------|-------------|----------|---------|
+| `command` | Command passed to the ArgoCD CLI | No | |
+| `options` | Options passed to the ArgoCD CLI command | No | |
+| `version` | Version of ArgoCD CLI to install | No | `3.3.2` |
+| `download-url` | Custom URL to download the ArgoCD CLI binary from (e.g., from a self-hosted server) | No | |
+
+### Outputs
+
+| Name | Description |
+|------|-------------|
+| `output` | Stdout from the ArgoCD CLI command execution |
+
+### Basic
 
 ```yml
 - uses: clowdhaus/argo-cd-action/@main
   with:
-    version: 2.6.7
     command: version
     options: --client
 ```
 
 ### With GitHub API authentication
 
-If you are running a lot of workflows/jobs quite frequently, you may run into GitHub's API rate limit due to pulling the CLI from the ArgoCD repository. To get around this limitation, add the `GITHUB_TOKEN` as shown below (or see [here](https://github.com/octokit/auth-action.js#createactionauth) for more examples) to utilize a higher rate limit when authenticated.
+If you run workflows frequently, you may hit GitHub's API rate limit when downloading the CLI from ArgoCD releases. Add `GITHUB_TOKEN` to authenticate and use a higher rate limit.
 
 ```yml
 - uses: clowdhaus/argo-cd-action/@main
   env:
-    # Only required for first step in job where API is called
-    # All subsequent setps in a job will not re-download the CLI
+    # Only required for first step in job where the CLI is downloaded
+    # Subsequent steps in the same job will use the cached binary
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   with:
     command: version
     options: --client
+```
+
+### With a self-hosted ArgoCD server
+
+Use the `download-url` input to download the CLI directly from your ArgoCD server instead of GitHub releases. This keeps your CLI version in sync with your server and avoids GitHub API rate limits.
+
+```yml
 - uses: clowdhaus/argo-cd-action/@main
-  # CLI has already been downloaded in prior step, no call to GitHub API
   with:
+    download-url: https://argocd.example.com/download/argocd-linux-amd64
     command: version
     options: --client
 ```
+
+### Authenticate and deploy
+
+```yml
+- name: Install ArgoCD CLI
+  uses: clowdhaus/argo-cd-action/@main
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+- name: Deploy application
+  uses: clowdhaus/argo-cd-action/@main
+  with:
+    command: app sync my-app
+    options: >-
+      --auth-token ${{ secrets.ARGOCD_AUTH_TOKEN }}
+      --server ${{ secrets.ARGOCD_SERVER }}
+      --grpc-web
+```
+
+### Capture command output
+
+The action exposes the CLI stdout as a step output, which can be referenced in subsequent steps.
+
+```yml
+- name: List applications
+  id: argocd
+  uses: clowdhaus/argo-cd-action/@main
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  with:
+    command: app list
+    options: >-
+      --auth-token ${{ secrets.ARGOCD_AUTH_TOKEN }}
+      --server ${{ secrets.ARGOCD_SERVER }}
+      --grpc-web
+      -o name
+
+- name: Use output
+  run: echo "${{ steps.argocd.outputs.output }}"
+```
+
+### Set a specific version
+
+```yml
+- uses: clowdhaus/argo-cd-action/@main
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  with:
+    version: 3.1.5
+    command: version
+    options: --client
+```
+
+### Install only (no command)
+
+If you omit `command`, the action only installs the ArgoCD CLI and adds it to `PATH` for use in subsequent `run` steps.
+
+```yml
+- uses: clowdhaus/argo-cd-action/@main
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+- run: argocd version --client
+```
+
+## Security
+
+- Downloaded binaries from GitHub releases are verified against SHA256 checksums (available for ArgoCD v2.7.0+)
+- `GITHUB_TOKEN` is automatically filtered from the environment when executing ArgoCD CLI commands
+- When using `download-url`, checksum verification is skipped as the binary comes from your own infrastructure
 
 ## Getting Started
 
