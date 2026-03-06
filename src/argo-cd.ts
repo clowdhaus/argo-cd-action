@@ -22,6 +22,13 @@ const CPU_ARCHITECTURES: Record<string, string> = {
 
 const SEMVER_REGEX = /^\d+\.\d+\.\d+(-[\w.]+)?$/;
 
+const SENSITIVE_ENV_KEYS = [
+  'GITHUB_TOKEN',
+  'ACTIONS_RUNTIME_TOKEN',
+  'ACTIONS_ID_TOKEN_REQUEST_TOKEN',
+  'ACTIONS_ID_TOKEN_REQUEST_URL',
+];
+
 export default class ArgoCD {
   private readonly exePath: string;
 
@@ -66,7 +73,7 @@ export default class ArgoCD {
     }
 
     if (PLATFORM === 'win32') {
-      return 'argocd-windows-amd64.exe';
+      return `argocd-windows-${arch}.exe`;
     }
 
     return `argocd-${PLATFORM}-${arch}`;
@@ -76,6 +83,12 @@ export default class ArgoCD {
     url: string,
     version: string,
   ): Promise<ArgoCD> {
+    if (!url.startsWith('https://')) {
+      throw new Error(
+        `Invalid download URL: "${url}". Only HTTPS URLs are allowed.`,
+      );
+    }
+
     core.debug(`Downloading ArgoCD from custom URL: ${url}`);
     const assetPath = await tc.downloadTool(url);
 
@@ -114,25 +127,16 @@ export default class ArgoCD {
       const checksumPath = await tc.downloadTool(
         checksumAsset.browser_download_url,
       );
-      const content = await fs.readFile(checksumPath, 'utf-8');
+      const checksumContent = await fs.readFile(checksumPath, 'utf-8');
+      const expectedHash = ArgoCD.findChecksum(checksumContent, executable);
 
-      for (const line of content.trim().split('\n')) {
-        const [hash, filename] = line.trim().split(/\s+/);
-        if (filename === executable && hash) {
-          const fileBuffer = await fs.readFile(assetPath);
-          const actualHash = createHash('sha256')
-            .update(fileBuffer)
-            .digest('hex');
-
-          if (actualHash !== hash) {
-            throw new Error(
-              `Checksum mismatch for ${executable}. Expected: ${hash}, Got: ${actualHash}`,
-            );
-          }
-
-          core.debug(`Checksum verified: ${actualHash}`);
-          break;
-        }
+      if (expectedHash) {
+        const fileBuffer = await fs.readFile(assetPath);
+        ArgoCD.verifyChecksum(fileBuffer, expectedHash, executable);
+      } else {
+        core.warning(
+          `No checksum entry found for "${executable}", skipping verification`,
+        );
       }
     } else {
       core.warning(
@@ -161,6 +165,47 @@ export default class ArgoCD {
     return new ArgoCD('argocd');
   }
 
+  static findChecksum(
+    checksumContent: string,
+    filename: string,
+  ): string | undefined {
+    for (const line of checksumContent.trim().split('\n')) {
+      const [hash, name] = line.trim().split(/\s+/);
+      if (name === filename && hash) {
+        return hash;
+      }
+    }
+    return undefined;
+  }
+
+  static verifyChecksum(
+    fileBuffer: Buffer,
+    expectedHash: string,
+    filename: string,
+  ): void {
+    const actualHash = createHash('sha256').update(fileBuffer).digest('hex');
+    if (actualHash !== expectedHash) {
+      throw new Error(
+        `Checksum mismatch for ${filename}. Expected: ${expectedHash}, Got: ${actualHash}`,
+      );
+    }
+    core.debug(`Checksum verified: ${actualHash}`);
+  }
+
+  static filterEnv(
+    env: Record<string, string | undefined>,
+    keysToFilter: string[] = SENSITIVE_ENV_KEYS,
+  ): Record<string, string> {
+    const filtered: Record<string, string> = {};
+    const filterSet = new Set(keysToFilter);
+    for (const [key, value] of Object.entries(env)) {
+      if (!filterSet.has(key) && value !== undefined) {
+        filtered[key] = value;
+      }
+    }
+    return filtered;
+  }
+
   private static createOctokit(): Octokit {
     // If hitting GitHub API rate limit, add `GITHUB_TOKEN` to raise limit
     const options = process.env.GITHUB_TOKEN
@@ -169,20 +214,10 @@ export default class ArgoCD {
     return new Octokit(options);
   }
 
-  private getFilteredEnv(): Record<string, string> {
-    const env: Record<string, string> = {};
-    for (const [key, value] of Object.entries(process.env)) {
-      if (key !== 'GITHUB_TOKEN' && value !== undefined) {
-        env[key] = value;
-      }
-    }
-    return env;
-  }
-
   async call(args: string[], options?: exec.ExecOptions): Promise<number> {
     const opts: exec.ExecOptions = {
       ...options,
-      env: options?.env ?? this.getFilteredEnv(),
+      env: options?.env ?? ArgoCD.filterEnv(process.env),
     };
     return await exec.exec(this.exePath, args, opts);
   }
@@ -192,13 +227,15 @@ export default class ArgoCD {
     options?: exec.ExecOptions,
   ): Promise<string> {
     let stdout = '';
+    const existingStdout = options?.listeners?.stdout;
     const opts: exec.ExecOptions = {
       ...options,
-      env: options?.env ?? this.getFilteredEnv(),
+      env: options?.env ?? ArgoCD.filterEnv(process.env),
       listeners: {
         ...options?.listeners,
         stdout: (buffer: Buffer) => {
           stdout += buffer.toString();
+          existingStdout?.(buffer);
         },
       },
     };

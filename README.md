@@ -134,8 +134,9 @@ If you omit `command`, the action only installs the ArgoCD CLI and adds it to `P
 ## Security
 
 - Downloaded binaries from GitHub releases are verified against SHA256 checksums (available for ArgoCD v2.7.0+)
-- `GITHUB_TOKEN` is automatically filtered from the environment when executing ArgoCD CLI commands
+- Sensitive environment variables (`GITHUB_TOKEN`, `ACTIONS_RUNTIME_TOKEN`, `ACTIONS_ID_TOKEN_REQUEST_TOKEN`, `ACTIONS_ID_TOKEN_REQUEST_URL`) are automatically filtered when executing ArgoCD CLI commands
 - When using `download-url`, checksum verification is skipped as the binary comes from your own infrastructure
+- GitHub Actions in CI workflows are pinned by full-length commit SHA for supply chain integrity
 
 ## Getting Started
 
