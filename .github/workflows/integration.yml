@@ -9,7 +9,7 @@ on:
       - 'dist/**'
       - 'src/**'
       - 'action.yml'
-      - 'yarn.lock'
+      - 'package-lock.json'
   push:
     branches:
       - main
@@ -18,7 +18,7 @@ on:
       - 'dist/**'
       - 'src/**'
       - 'action.yml'
-      - 'yarn.lock'
+      - 'package-lock.json'
 
 jobs:
   no-auth:

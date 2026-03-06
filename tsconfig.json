@@ -4,16 +4,11 @@
     "moduleResolution": "node",
     "skipLibCheck": true,
     "removeComments": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
+    "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "preserveConstEnums": true,
-    "ignoreDeprecations": "5.0",
+    "preserveConstEnums": true
   },
   "include": ["src/*.ts"],
   "exclude": ["node_modules", "tests"]
