@@ -21,7 +21,8 @@
   "author": "Clowd Haus, LLC",
   "main": "src/index.ts",
   "scripts": {
-    "all": "npm run lint && npm run compile",
+    "all": "npm run lint && npm run test && npm run compile",
+    "test": "vitest run",
     "compile": "ncc build -m",
     "lint": "eslint . --quiet --fix",
     "release": "semantic-release"
@@ -81,7 +82,8 @@
     "eslint": "^10.0.2",
     "semantic-release": "^25.0.3",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.56.1"
+    "typescript-eslint": "^8.56.1",
+    "vitest": "^4.0.18"
   },
   "overrides": {
     "minimatch": "^10.2.4",

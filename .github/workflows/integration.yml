@@ -9,6 +9,7 @@ on:
       - 'dist/**'
       - 'src/**'
       - 'action.yml'
+      - 'package.json'
       - 'package-lock.json'
   push:
     branches:
@@ -18,6 +19,7 @@ on:
       - 'dist/**'
       - 'src/**'
       - 'action.yml'
+      - 'package.json'
       - 'package-lock.json'
 
 permissions:
@@ -33,17 +35,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          persist-credentials: false
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
         with:
           node-version: 24
 
-      - name: Install and build
+      - name: Install, test, and build
         run: |
-          npm ci
-          npm run compile
+          npm ci --ignore-scripts
+          npm run all
 
       - name: Check for uncommitted changes
         run: |
@@ -61,7 +65,9 @@ jobs:
         os: [macos-latest, ubuntu-latest]
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          persist-credentials: false
 
       - name: Show version
         uses: ./
@@ -87,7 +93,9 @@ jobs:
         os: [macos-latest, ubuntu-latest]
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          persist-credentials: false
 
       - name: Show version
         uses: ./
