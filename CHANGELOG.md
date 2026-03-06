@@ -1,3 +1,17 @@
+## [4.0.0](https://github.com/clowdhaus/argo-cd-action/compare/v3.2.0...v4.0.0) (2026-03-06)
+
+### ⚠ BREAKING CHANGES
+
+* comprehensive code quality, security, and workflow improvements (#126)
+
+### Features
+
+* comprehensive code quality, security, and workflow improvements ([#126](https://github.com/clowdhaus/argo-cd-action/issues/126)) ([501c829](https://github.com/clowdhaus/argo-cd-action/commit/501c829f57bd0c95481d04c7d59d1a3136e9addd))
+
+### Bug Fixes
+
+* **release:** configure conventionalcommits preset for semantic-release ([7ef6cbb](https://github.com/clowdhaus/argo-cd-action/commit/7ef6cbb6a6a0d6f623ab23f87bf82870b671f010))
+
 # [3.2.0](https://github.com/clowdhaus/argo-cd-action/compare/v3.1.0...v3.2.0) (2025-11-24)
 
 
