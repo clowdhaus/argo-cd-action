@@ -20,25 +20,38 @@ on:
       - 'action.yml'
       - 'package-lock.json'
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  no-auth:
-    name: Download w/o auth
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest, ubuntu-latest]
+  verify-build:
+    name: Verify dist is up to date
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Show version
-        uses: ./
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
         with:
-          command: version
-          options: --client
+          node-version: 24
 
-      - name: Check install - should not re-download
-        uses: ./
+      - name: Install and build
+        run: |
+          npm ci
+          npm run compile
+
+      - name: Check for uncommitted changes
+        run: |
+          if ! git diff --quiet dist/; then
+            echo "::error::dist/index.js is out of date. Run 'npm run compile' and commit the result."
+            git diff --stat dist/
+            exit 1
+          fi
 
   with-auth:
     name: Download with auth
@@ -81,6 +94,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          version: 2.4.18
+          version: 3.1.5
           command: version
           options: --client

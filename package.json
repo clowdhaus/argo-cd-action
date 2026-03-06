@@ -30,7 +30,6 @@
     "branches": [
       "main"
     ],
-    "ci": false,
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
@@ -46,6 +45,7 @@
         {
           "assets": [
             "CHANGELOG.md",
+            "dist/index.js",
             "package.json"
           ],
           "message": "chore(release): version ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
