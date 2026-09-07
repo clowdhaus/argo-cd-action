@@ -30,17 +30,17 @@
     "@actions/core": "^3.0.1",
     "@actions/exec": "^3.0.0",
     "@actions/tool-cache": "^4.0.0",
-    "@octokit/auth-action": "^6.0.2",
+    "@octokit/auth-action": "^6.0.3",
     "@octokit/rest": "^22.0.1",
     "string-argv": "^0.3.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@types/node": "^26.2.0",
+    "@types/node": "^26.4.1",
     "esbuild": "^0.28.2",
-    "eslint": "^10.9.0",
+    "eslint": "^10.10.0",
     "typescript": "^7.0.2",
-    "typescript-eslint": "^8.67.0",
-    "vitest": "^4.1.11"
+    "typescript-eslint": "^8.69.0",
+    "vitest": "^5.0.0"
   }
 }
